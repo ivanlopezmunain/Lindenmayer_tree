@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <style>
+     body{ 
+          background-color: rgb(219, 224, 166); 
+          
+     }
+     canvas{ 
+          background-color: rgb(197, 247, 247); 
+          border: 1px solid ; 
+    
+     }
+     div{ 
+          display:block;          
+     }
+
+     h1 {
+    font-size:20px;
+    }
+  </style>
+  <title> Entrega 2 - Iván López de Munain Quintana</title>
+  
+  <!-- ****************   VERTEX SHADER *******************-->
+  <script id="vertex-shader" type="x-shader/x-vertex">
+    attribute vec3 a_position;  
+    attribute vec3 color;
+    uniform mat4 matrixRotation;    
+    varying highp vec4 vColor;
+    void main() {     
+      gl_Position = matrixRotation*vec4(a_position, 1.0);
+      gl_PointSize = 10.0; //TAMAÑO DEL PUNTO
+      vColor = vec4(color,1.0);
+    }
+  </script>
+
+  <!-- ****************   FRAGMENT SHADER *******************-->
+  <script id="fragment-shader" type="x-shader/x-fragment">
+    varying highp vec4 vColor;
+    void main() {       
+      
+        gl_FragColor = vColor;
+    }
+  </script>
+
+  <!-- pongo las dos librerias por si acaso hubiese incompatibilidades -->
+  <script type="text/javascript" src="./gl-matrix-min.js"></script>
+  <script type="text/javascript" src="./gl-matrix.js"></script>
+
+  <script type="text/javascript" src="Entrega2-IvánLópezdeMunain.js"></script>
+  </head>
+  <h1 align=center>Entrega 2: L-system</h1>
+  <body id="body" onload="initWebGL()">    
+    
+    <div id="div-canvas" style="margin-left:350px" >
+      <canvas id="canvas" width="600" height="600" ></canvas>
+    </div>  
+    
+  </body>
+</html>
